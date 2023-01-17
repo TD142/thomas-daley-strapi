@@ -3,8 +3,23 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { API_URL } from "../../utils/Api";
 const Main = () => {
-  const [spaceCrafts, setSpaceCrafts] = useState(null);
+  const [spaceCrafts, setSpaceCrafts] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(6);
+
+  const searchedSpaceCrafts = spaceCrafts.filter((spaceCrafts) =>
+    spaceCrafts.name.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
+  console.log(searchedSpaceCrafts);
+
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentSpaceCrafts = searchedSpaceCrafts.slice(
+    firstPostIndex,
+    lastPostIndex
+  );
 
   const getData = async () => {
     const { data } = await axios.get(API_URL);
@@ -19,9 +34,6 @@ const Main = () => {
   if (!spaceCrafts) {
     return <p>...loading</p>;
   } else {
-    const searchedSpaceCrafts = spaceCrafts.filter((spaceCrafts) =>
-      spaceCrafts.name.toLowerCase().includes(searchValue.toLowerCase())
-    );
     return (
       <div className="main">
         <div className="container">
@@ -29,16 +41,16 @@ const Main = () => {
           <input
             value={searchValue}
             onChange={(event) => {
+              setCurrentPage(1);
               setSearchValue(event.target.value);
             }}
             id="search"
             name="search"
             type="text"
           />
-          {searchedSpaceCrafts.map((spaceCraft) => {
+          {currentSpaceCrafts.map((spaceCraft) => {
             return (
               <div className="spacecrafts" key={spaceCraft.uid}>
-                <div className=""></div>
                 {spaceCraft.name && <p>Name: {spaceCraft.name}</p>}
                 {spaceCraft.registry && <p>Registry: {spaceCraft.registry}</p>}
                 {spaceCraft.status && <p>Status: {spaceCraft.status}</p>}
@@ -57,6 +69,25 @@ const Main = () => {
               </div>
             );
           })}
+          {currentPage > 1 && searchedSpaceCrafts.length > 6 && (
+            <p
+              onClick={() => {
+                setCurrentPage((previousPage) => previousPage - 1);
+              }}
+            >
+              Previous
+            </p>
+          )}
+          {currentPage < searchedSpaceCrafts.length / postsPerPage &&
+            searchedSpaceCrafts.length > 6 && (
+              <p
+                onClick={() => {
+                  setCurrentPage((previousPage) => previousPage + 1);
+                }}
+              >
+                Next
+              </p>
+            )}
         </div>
       </div>
     );
