@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { API_URL } from "../../utils/Api";
 import Paginate from "./Paginate/Paginate";
+import "./Main.scss";
 const Main = () => {
   const [spaceCrafts, setSpaceCrafts] = useState([]);
   const [searchValue, setSearchValue] = useState("");
@@ -42,15 +43,22 @@ const Main = () => {
   } else {
     return (
       <div className="main">
-        <div className="container">
-          <label htmlFor="search">Search</label>
-          <input
-            value={searchValue}
-            onChange={handleInputChange}
-            id="search"
-            name="search"
-            type="text"
-          />
+        <div className="main__container">
+          <div className="main__wrapper">
+            <h2>SPACECRAFTS</h2>
+            <div className="search">
+              {/* <label htmlFor="search">Search</label> */}
+              <input
+                placeholder="...Search"
+                value={searchValue}
+                onChange={handleInputChange}
+                id="search"
+                name="search"
+                type="text"
+              />
+            </div>
+          </div>
+
           {currentSpaceCrafts.length ? (
             currentSpaceCrafts.map((spaceCraft) => {
               return (

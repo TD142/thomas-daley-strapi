@@ -11,45 +11,46 @@ const Paginate = ({
     pageNumbers.push(i);
   }
 
-  //   const highLightPageNumber = () => {
-  //     const pages = document.querySelectorAll(".pagination__item");
-  //     pages.forEach((page) => {
-  //       page.classList.remove("pagination__list--highlight");
-  //     });
-  //     pages[currentPage - 1].classList.add("pagination__list--highlight");
-  //   };
-
   return (
-    <div className="pagination-container">
-      {currentPage > 1 && searchedSpaceCrafts.length > 6 && (
-        <p
-          onClick={() => {
-            setCurrentPage((previousPage) => previousPage - 1);
-          }}
-        >
-          Previous
-        </p>
-      )}
+    <div className="pagination">
+      <p
+        className={
+          currentPage > 1 && searchedSpaceCrafts.length > 6
+            ? "pagination__text"
+            : "pagination__text--hidden"
+        }
+        onClick={() => {
+          setCurrentPage((previousPage) => previousPage - 1);
+        }}
+      >
+        Previous
+      </p>
 
-      <ul className="pagination">
+      <ul className="pagination__list">
         {pageNumbers.map((number) => (
           <li
-            className={number === currentPage && "pagination__item--highlight"}
+            className={`pagination__list__item ${
+              number === currentPage && "pagination__list__item--highlight"
+            }`}
             key={number}
           >
             {number}
           </li>
         ))}
       </ul>
-      {currentPage < totalPages && searchedSpaceCrafts.length > 6 && (
-        <p
-          onClick={() => {
-            setCurrentPage((previousPage) => previousPage + 1);
-          }}
-        >
-          Next
-        </p>
-      )}
+
+      <p
+        className={
+          currentPage < totalPages && searchedSpaceCrafts.length > 6
+            ? "pagination__text"
+            : "pagination__text--hidden"
+        }
+        onClick={() => {
+          setCurrentPage((previousPage) => previousPage + 1);
+        }}
+      >
+        Next
+      </p>
     </div>
   );
 };

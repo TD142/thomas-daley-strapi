@@ -1,14 +1,26 @@
 .pagination {
-  &__item {
+  margin: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  &__list {
     list-style: none;
-    width: fit-content;
+    padding: 0;
+    display: flex;
 
-    &--highlight {
-      background: lightgray;
+    &__item {
+      list-style: none;
+      width: fit-content;
+      padding: 0.5rem;
+      &--highlight {
+        background: lightgray;
+      }
     }
   }
 
-  & > &__item:nth-of-type(1) {
-    background: lightgray;
+  &__text {
+    align-self: center;
+    &--hidden {
+      visibility: hidden;
+    }
   }
 }
