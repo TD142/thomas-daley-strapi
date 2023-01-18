@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { API_URL } from "../../utils/Api";
+import Paginate from "./Paginate/Paginate";
 const Main = () => {
   const [spaceCrafts, setSpaceCrafts] = useState([]);
   const [searchValue, setSearchValue] = useState("");
@@ -12,14 +13,14 @@ const Main = () => {
     spaceCrafts.name.toLowerCase().includes(searchValue.toLowerCase())
   );
 
-  console.log(searchedSpaceCrafts);
-
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentSpaceCrafts = searchedSpaceCrafts.slice(
     firstPostIndex,
     lastPostIndex
   );
+
+  const totalPages = Math.ceil(searchedSpaceCrafts.length / postsPerPage);
 
   const getData = async () => {
     const { data } = await axios.get(API_URL);
@@ -69,26 +70,13 @@ const Main = () => {
               </div>
             );
           })}
-          {currentPage > 1 && searchedSpaceCrafts.length > 6 && (
-            <p
-              onClick={() => {
-                setCurrentPage((previousPage) => previousPage - 1);
-              }}
-            >
-              Previous
-            </p>
-          )}
-          {currentPage < searchedSpaceCrafts.length / postsPerPage &&
-            searchedSpaceCrafts.length > 6 && (
-              <p
-                onClick={() => {
-                  setCurrentPage((previousPage) => previousPage + 1);
-                }}
-              >
-                Next
-              </p>
-            )}
         </div>
+        <Paginate
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          searchedSpaceCrafts={searchedSpaceCrafts}
+          totalPages={totalPages}
+        />
       </div>
     );
   }
