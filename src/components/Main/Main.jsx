@@ -28,11 +28,16 @@ const Main = () => {
     setSpaceCrafts(data.spacecrafts);
   };
 
+  const handleInputChange = (event) => {
+    setCurrentPage(1);
+    setSearchValue(event.target.value);
+  };
+
   useEffect(() => {
     getData();
   }, []);
 
-  if (!spaceCrafts) {
+  if (!spaceCrafts.length) {
     return <p>...loading</p>;
   } else {
     return (
@@ -41,17 +46,12 @@ const Main = () => {
           <label htmlFor="search">Search</label>
           <input
             value={searchValue}
-            onChange={(event) => {
-              setCurrentPage(1);
-              setSearchValue(event.target.value);
-            }}
+            onChange={handleInputChange}
             id="search"
             name="search"
             type="text"
           />
-          {!currentSpaceCrafts.length ? (
-            <p>No search matches!</p>
-          ) : (
+          {currentSpaceCrafts.length ? (
             currentSpaceCrafts.map((spaceCraft) => {
               return (
                 <div className="spacecrafts" key={spaceCraft.uid}>
@@ -75,6 +75,8 @@ const Main = () => {
                 </div>
               );
             })
+          ) : (
+            <p>No search Matches!</p>
           )}
         </div>
         <Paginate

@@ -4,9 +4,7 @@ import "./styles/global.scss";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Main />
-      </header>
+      <Main />
     </div>
   );
 }

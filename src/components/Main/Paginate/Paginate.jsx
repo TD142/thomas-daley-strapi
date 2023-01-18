@@ -1,4 +1,4 @@
-import React from "react";
+import "./Paginate.scss";
 const Paginate = ({
   totalPages,
   currentPage,
@@ -10,6 +10,14 @@ const Paginate = ({
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
+
+  //   const highLightPageNumber = () => {
+  //     const pages = document.querySelectorAll(".pagination__item");
+  //     pages.forEach((page) => {
+  //       page.classList.remove("pagination__list--highlight");
+  //     });
+  //     pages[currentPage - 1].classList.add("pagination__list--highlight");
+  //   };
 
   return (
     <div className="pagination-container">
@@ -25,7 +33,10 @@ const Paginate = ({
 
       <ul className="pagination">
         {pageNumbers.map((number) => (
-          <li key={number} className="page-number">
+          <li
+            className={number === currentPage && "pagination__item--highlight"}
+            key={number}
+          >
             {number}
           </li>
         ))}

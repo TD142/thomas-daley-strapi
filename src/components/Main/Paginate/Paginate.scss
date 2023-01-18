@@ -1,0 +1,14 @@
+.pagination {
+  &__item {
+    list-style: none;
+    width: fit-content;
+
+    &--highlight {
+      background: lightgray;
+    }
+  }
+
+  & > &__item:nth-of-type(1) {
+    background: lightgray;
+  }
+}
