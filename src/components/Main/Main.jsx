@@ -49,27 +49,33 @@ const Main = () => {
             name="search"
             type="text"
           />
-          {currentSpaceCrafts.map((spaceCraft) => {
-            return (
-              <div className="spacecrafts" key={spaceCraft.uid}>
-                {spaceCraft.name && <p>Name: {spaceCraft.name}</p>}
-                {spaceCraft.registry && <p>Registry: {spaceCraft.registry}</p>}
-                {spaceCraft.status && <p>Status: {spaceCraft.status}</p>}
-                {spaceCraft.dateStatus && (
-                  <p>dateStatus: {spaceCraft.dateStatus}</p>
-                )}
+          {!currentSpaceCrafts.length ? (
+            <p>No search matches!</p>
+          ) : (
+            currentSpaceCrafts.map((spaceCraft) => {
+              return (
+                <div className="spacecrafts" key={spaceCraft.uid}>
+                  {spaceCraft.name && <p>Name: {spaceCraft.name}</p>}
+                  {spaceCraft.registry && (
+                    <p>Registry: {spaceCraft.registry}</p>
+                  )}
+                  {spaceCraft.status && <p>Status: {spaceCraft.status}</p>}
+                  {spaceCraft.dateStatus && (
+                    <p>dateStatus: {spaceCraft.dateStatus}</p>
+                  )}
 
-                {spaceCraft.spacecraftClass && (
-                  <p>spacecraftClass: {spaceCraft.spacecraftClass.name}</p>
-                )}
+                  {spaceCraft.spacecraftClass && (
+                    <p>spacecraftClass: {spaceCraft.spacecraftClass.name}</p>
+                  )}
 
-                {spaceCraft.owner && <p>Owner: {spaceCraft.owner.name}</p>}
-                {spaceCraft.operator && (
-                  <p>Owner: {spaceCraft.operator.name}</p>
-                )}
-              </div>
-            );
-          })}
+                  {spaceCraft.owner && <p>Owner: {spaceCraft.owner.name}</p>}
+                  {spaceCraft.operator && (
+                    <p>Owner: {spaceCraft.operator.name}</p>
+                  )}
+                </div>
+              );
+            })
+          )}
         </div>
         <Paginate
           currentPage={currentPage}

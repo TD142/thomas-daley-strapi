@@ -22,6 +22,14 @@ const Paginate = ({
           Previous
         </p>
       )}
+
+      <ul className="pagination">
+        {pageNumbers.map((number) => (
+          <li key={number} className="page-number">
+            {number}
+          </li>
+        ))}
+      </ul>
       {currentPage < totalPages && searchedSpaceCrafts.length > 6 && (
         <p
           onClick={() => {
@@ -31,13 +39,6 @@ const Paginate = ({
           Next
         </p>
       )}
-      <ul className="pagination">
-        {pageNumbers.map((number) => (
-          <li key={number} className="page-number">
-            {number}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };
