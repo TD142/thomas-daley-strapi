@@ -49,7 +49,7 @@ const Paginate = ({
 
       <p
         className={
-          // same logic as for previous page but with the opposite logic
+          // opposite logic as for previous page display
           currentPage < totalPages && searchedSpaceCrafts.length > 6
             ? "pagination__text"
             : "pagination__text--hidden"
