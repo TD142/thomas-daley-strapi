@@ -1,7 +1,13 @@
+@import "../../styles/partials/mixins";
 .pagination {
   margin: 1.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+
+  @include desktop {
+    max-width: 1000px;
+    margin: 2rem auto;
+  }
   &__list {
     list-style: none;
     padding: 0;
@@ -20,9 +26,10 @@
   }
 
   &__text {
+    font-size: 1.5rem;
     align-self: center;
     cursor: pointer;
-    text-decoration: underline;
+    border: 1px solid gray;
     &--hidden {
       visibility: hidden;
     }

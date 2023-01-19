@@ -7,6 +7,7 @@ const Paginate = ({
 }) => {
   const pageNumbers = [];
 
+  // Adding page numbers to array to map over
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
@@ -14,6 +15,7 @@ const Paginate = ({
   return (
     <div className="pagination">
       <p
+        // hide page change if there's less results than posts per page or current page is less than one
         className={
           currentPage > 1 && searchedSpaceCrafts.length > 6
             ? "pagination__text"
@@ -24,7 +26,7 @@ const Paginate = ({
           window.scrollTo(0, 0);
         }}
       >
-        Previous
+        &lt;
       </p>
 
       <ul className="pagination__list">
@@ -35,6 +37,7 @@ const Paginate = ({
               window.scrollTo(0, 0);
             }}
             className={`pagination__list__item ${
+              // Highlight current page if numbers match
               number === currentPage && "pagination__list__item--highlight"
             }`}
             key={number}
@@ -46,6 +49,7 @@ const Paginate = ({
 
       <p
         className={
+          // same logic as for previous page but with the opposite logic
           currentPage < totalPages && searchedSpaceCrafts.length > 6
             ? "pagination__text"
             : "pagination__text--hidden"
@@ -55,7 +59,7 @@ const Paginate = ({
           window.scrollTo(0, 0);
         }}
       >
-        Next
+        &gt;
       </p>
     </div>
   );

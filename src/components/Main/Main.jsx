@@ -2,7 +2,9 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { API_URL } from "../../utils/Api";
-import Paginate from "./Paginate/Paginate";
+import Paginate from "../Paginate/Paginate";
+import { Circles } from "react-loader-spinner";
+
 import "./Main.scss";
 const Main = () => {
   const [spaceCrafts, setSpaceCrafts] = useState([]);
@@ -10,17 +12,23 @@ const Main = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
 
+  // Filtering search results
+
   const searchedSpaceCrafts = spaceCrafts.filter((spaceCrafts) =>
     spaceCrafts.name.toLowerCase().includes(searchValue.toLowerCase())
   );
-
+  // Last spaceship on page index
   const lastPostIndex = currentPage * postsPerPage;
+
+  // First spaceship on page index
   const firstPostIndex = lastPostIndex - postsPerPage;
+  // Copying the results between first and last index for pagination
   const currentSpaceCrafts = searchedSpaceCrafts.slice(
     firstPostIndex,
     lastPostIndex
   );
 
+  // Total number of pages
   const totalPages = Math.ceil(searchedSpaceCrafts.length / postsPerPage);
 
   const getData = async () => {
@@ -30,7 +38,9 @@ const Main = () => {
   };
 
   const handleInputChange = (event) => {
+    // Set page to one on each render so results are sorted from the beggining of page one
     setCurrentPage(1);
+    // Input value held in state
     setSearchValue(event.target.value);
   };
 
@@ -39,7 +49,12 @@ const Main = () => {
   }, []);
 
   if (!spaceCrafts.length) {
-    return <p>...loading</p>;
+    return (
+      <div className="loading">
+        <Circles color="white" height={60} width={60} />
+        <p>Loading</p>
+      </div>
+    );
   } else {
     return (
       <div className="main">
@@ -47,8 +62,8 @@ const Main = () => {
           <div className="main__wrapper">
             <h2 className="main__wrapper__title">SPACECRAFTS</h2>
             <div className="search">
-              {/* <label htmlFor="search">Search</label> */}
               <input
+                // Error boundry for input
                 className={`input ${
                   !searchedSpaceCrafts.length && "input--error"
                 } `}
@@ -65,6 +80,7 @@ const Main = () => {
           {currentSpaceCrafts.length ? (
             currentSpaceCrafts.map((spaceCraft) => {
               return (
+                // Using ternary to only show available data from API call
                 <div className="spacecrafts" key={spaceCraft.uid}>
                   {spaceCraft.name && <p>Name: {spaceCraft.name}</p>}
                   {spaceCraft.registry && (
@@ -87,6 +103,7 @@ const Main = () => {
               );
             })
           ) : (
+            // Error boundry for no search matches
             <p className="main__container__text">No Search Results!</p>
           )}
         </div>

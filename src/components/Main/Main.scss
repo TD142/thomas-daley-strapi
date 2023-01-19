@@ -1,7 +1,17 @@
+@import "../../styles/partials/mixins.scss";
 .main {
   &__container {
     margin: 1.5rem;
     border: 2px solid white;
+
+    @include tablet {
+      margin: 2rem;
+    }
+
+    @include desktop {
+      max-width: 1000px;
+      margin: 2rem auto;
+    }
 
     &__text {
       text-align: center;
@@ -17,6 +27,10 @@
 
     &__title {
       font-size: 1.3rem;
+
+      @include tablet {
+        font-size: 1.7rem;
+      }
     }
   }
 }
@@ -35,11 +49,32 @@
   height: 1.5rem;
   border: none;
   width: 7rem;
-
-  &::placeholder {
-    padding-left: 0.5rem;
-  }
+  padding-left: 0.5rem;
   &--error {
     outline: 2px solid red;
+  }
+
+  @include tablet {
+    width: 12rem;
+    height: 1.8rem;
+  }
+
+  @include desktop {
+    width: 18rem;
+    height: 2rem;
+  }
+}
+
+.loading {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 30%;
+  text-align: center;
+  // Overwriting spinner default styles
+  & > div {
+    display: block !important ;
   }
 }
