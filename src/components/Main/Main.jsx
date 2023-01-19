@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { API_URL } from "../../utils/Api";
 import Paginate from "../Paginate/Paginate";
 import { Circles } from "react-loader-spinner";
-
 import "./Main.scss";
 const Main = () => {
   const [spaceCrafts, setSpaceCrafts] = useState([]);
@@ -88,11 +87,11 @@ const Main = () => {
                   )}
                   {spaceCraft.status && <p>Status: {spaceCraft.status}</p>}
                   {spaceCraft.dateStatus && (
-                    <p>dateStatus: {spaceCraft.dateStatus}</p>
+                    <p>DateStatus: {spaceCraft.dateStatus}</p>
                   )}
 
                   {spaceCraft.spacecraftClass && (
-                    <p>spacecraftClass: {spaceCraft.spacecraftClass.name}</p>
+                    <p>SpacecraftClass: {spaceCraft.spacecraftClass.name}</p>
                   )}
 
                   {spaceCraft.owner && <p>Owner: {spaceCraft.owner.name}</p>}
