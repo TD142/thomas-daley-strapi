@@ -15,7 +15,7 @@ const Paginate = ({
   return (
     <div className="pagination">
       <p
-        // hide page change if there's less results than posts per page or current page is less than one
+        // Hide page change if there's less results than posts per page or current page is less than one
         className={
           currentPage > 1 && searchedSpaceCrafts.length > 6
             ? "pagination__text"
@@ -49,7 +49,7 @@ const Paginate = ({
 
       <p
         className={
-          // opposite logic as for previous page display
+          // Opposite logic as for previous page display
           currentPage < totalPages && searchedSpaceCrafts.length > 6
             ? "pagination__text"
             : "pagination__text--hidden"
