@@ -51,7 +51,8 @@
   width: 7rem;
   padding-left: 0.5rem;
   &--error {
-    outline: 2px solid red;
+    border: 2px solid red;
+    outline: none;
   }
 
   @include tablet {
