@@ -1,6 +1,6 @@
 # About
 
-Pagination exercise using the StarTrek API.
+Pagination and search exercise using the StarTrek API.
 
 Live site at https://thomas-daley-strapi.vercel.app/
 
