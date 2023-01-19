@@ -29,6 +29,9 @@ const Paginate = ({
       <ul className="pagination__list">
         {pageNumbers.map((number) => (
           <li
+            onClick={() => {
+              setCurrentPage(number);
+            }}
             className={`pagination__list__item ${
               number === currentPage && "pagination__list__item--highlight"
             }`}
