@@ -11,6 +11,8 @@
       list-style: none;
       width: fit-content;
       padding: 0.5rem;
+      cursor: pointer;
+      border: 1px solid gray;
       &--highlight {
         background: lightgray;
       }
@@ -19,6 +21,8 @@
 
   &__text {
     align-self: center;
+    cursor: pointer;
+    text-decoration: underline;
     &--hidden {
       visibility: hidden;
     }

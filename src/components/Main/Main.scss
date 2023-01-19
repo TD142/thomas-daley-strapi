@@ -2,18 +2,27 @@
   &__container {
     margin: 1.5rem;
     border: 2px solid white;
+
+    &__text {
+      text-align: center;
+      color: red;
+    }
   }
 
   &__wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2rem;
+    margin: 0 1.5rem;
+
+    &__title {
+      font-size: 1.3rem;
+    }
   }
 }
 
 .spacecrafts {
-  margin: 0 0 0 2rem;
+  margin: 0 0 0 1.5rem;
   border-bottom: 2px solid grey;
 
   &:nth-last-of-type(1) {
@@ -25,10 +34,12 @@
   border-radius: 16px;
   height: 1.5rem;
   border: none;
+  width: 7rem;
 
+  &::placeholder {
+    padding-left: 0.5rem;
+  }
   &--error {
-    &:focus {
-      outline: 2px solid red;
-    }
+    outline: 2px solid red;
   }
 }

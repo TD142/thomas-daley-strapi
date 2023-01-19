@@ -45,7 +45,7 @@ const Main = () => {
       <div className="main">
         <div className="main__container">
           <div className="main__wrapper">
-            <h2>SPACECRAFTS</h2>
+            <h2 className="main__wrapper__title">SPACECRAFTS</h2>
             <div className="search">
               {/* <label htmlFor="search">Search</label> */}
               <input
@@ -87,7 +87,7 @@ const Main = () => {
               );
             })
           ) : (
-            <p>No search Matches!</p>
+            <p className="main__container__text">No Search Results!</p>
           )}
         </div>
         <Paginate

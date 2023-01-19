@@ -21,6 +21,7 @@ const Paginate = ({
         }
         onClick={() => {
           setCurrentPage((previousPage) => previousPage - 1);
+          window.scrollTo(0, 0);
         }}
       >
         Previous
@@ -31,6 +32,7 @@ const Paginate = ({
           <li
             onClick={() => {
               setCurrentPage(number);
+              window.scrollTo(0, 0);
             }}
             className={`pagination__list__item ${
               number === currentPage && "pagination__list__item--highlight"
@@ -50,6 +52,7 @@ const Paginate = ({
         }
         onClick={() => {
           setCurrentPage((previousPage) => previousPage + 1);
+          window.scrollTo(0, 0);
         }}
       >
         Next
