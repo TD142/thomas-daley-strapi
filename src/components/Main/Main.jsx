@@ -49,6 +49,9 @@ const Main = () => {
             <div className="search">
               {/* <label htmlFor="search">Search</label> */}
               <input
+                className={`input ${
+                  !searchedSpaceCrafts.length && "input--error"
+                } `}
                 placeholder="...Search"
                 value={searchValue}
                 onChange={handleInputChange}

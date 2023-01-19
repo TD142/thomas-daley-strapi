@@ -21,14 +21,14 @@
   }
 }
 
-.search {
-  & > input {
-    border-radius: 16px;
-    height: 1.5rem;
-  }
+.input {
+  border-radius: 16px;
+  height: 1.5rem;
+  border: none;
 
-  & > label {
-    font-size: 0.9rem;
-    margin-right: 0.3rem;
+  &--error {
+    &:focus {
+      outline: 2px solid red;
+    }
   }
 }
